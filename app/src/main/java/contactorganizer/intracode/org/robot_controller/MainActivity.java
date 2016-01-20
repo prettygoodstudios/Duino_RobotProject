@@ -146,8 +146,73 @@ String name;
         for(String ww : words){
            i +=1;
             if (prompt.equals("start")){
+                if (sharedPref.getString("sick","").equals("") && sharedPref.getString("hurt","")){
+                int startrandom = rand.nextInt(3)+1;
+                if (startrandom == 1){
                 dialogue= "How are you doing today sir.";
                 prompt = "startresponse";
+                }
+                if (startrandom == 2 && sharedPref.getString("food","")){
+                    dialogue= "Hi I'm" + sharedPref.getString("robotname","Duino")+ ", I would like to know what is your favorite food";
+                    prompt = "Startfood";
+                }else if (startrandom == 2){
+               dialogue= "How are you doing today sir.";
+                prompt = "startresponse";
+                }
+                if (startrandom == 3){
+                   dialogue= "Hi I'm" + sharedPref.getString("robotname","Duino")+ ", I would like to know what is your favorite activity";
+                    prompt = "Startactivity";
+                }else if (startrandom == 2){
+               dialogue= "How are you doing today sir.";
+                prompt = "startresponse";
+                }
+                }
+                if (SharedPref.getString("sick").notEquals("")){
+                    dialogue= "Are you better from your" + sharedPref.getString("sick","");
+                    prompt = "startsick";
+                }
+                if (SharedPref.getString("hurt").notEquals("")){
+                    dialogue= "Have you healed from your" + sharedPref.getString("hurt","");
+                    prompt = "starthurt";
+                }
+            }
+            if (prompt.equals("Startfood") && command.notEqual("")){
+                dialogue= "Oh your favorite food is " + command;
+                editor.putString("food", command);
+                editor.apply();
+                prompt ="";
+            }
+            if (prompt.equals("Startactivity") && command.notEqual("")){
+                dialogue ="Oh your favorite activity is " + command;
+                editor.putString("activity", command);
+                editor.apply();
+                prompt ="";
+            }
+            if (prompt.equals("startsick"){
+                if (command.equal("yes")){
+                    dialogue= "I'm glad to hear that.";
+                    prompt = "";
+              editor.putString("sick", "");
+                editor.apply();
+                }
+                if (command.equal("no")){
+                    dialogue= "I'm sorry to hear that";
+                    prompt ="";
+                }
+                
+            }
+               if (prompt.equals("starthurt"){
+                if (command.equal("yes")){
+                    dialogue= "I'm glad to hear that.";
+                    prompt = "";
+              editor.putString("hurt", "");
+                editor.apply();
+                }
+                if (command.equal("no")){
+                    dialogue= "I'm sorry to hear that";
+                    prompt ="";
+                }
+                
             }
            if (prompt.equals("startresponse") && command.equals("good")){
                dialogue="It's nice to hear that";
@@ -180,6 +245,7 @@ String name;
                 editor.putString("mood", "");
                 editor.apply();
             }
+            
             if (sharedPref.getString("robotmode","").equals("obedient")) {
                 if (command.equals("good")&& prompt.equals("How are you doing today")){
                     dialogue =" I'm glad to hear that.     Do you need any assistance";
@@ -203,9 +269,60 @@ String name;
                 }
                 if (command.equals("Can you cheer me up") && prompt.equals("assistance2")){
                     prompt = "";
+                    Random typeresponse = new random();
+                    typrespone = rand.nextInt(3)+1;
+                    if (typeresponse == 1){
                     Random jok = new Random();
                     dialogue = jokes[jok.nextInt(jokes.length)];
+                    }
+                    if (typeresponse == 2){
+                        dialogue = "Why are you sad?";\
+                        prompt = "why are you sad"
+                    }
+                    if(typeresponse == 3){
+                        dialogue = "Don't cry over spilled milk.";
+                    }
+                    
                 }
+                if (prompt.equals("why are you sad") && command.equals("I lost a game")){
+                    dialogue = "You'll get em next time";
+                    prompt = "";
+                }
+                if(prompt.equals("why are you sad") && command.equals("I'm lonely"){
+                    dialogue = "I will always be your friend";
+                    prompt ="";
+                }
+                if(prompt.equals("why are you sad") && command.equals("I got hurt"){
+                    dialogue = "How did you get hurt because I can assist you.";
+                    prompt ="medical_hurt";
+                }
+                if (prompt.equals("why are you sad") && command.equals("I'm sick"){
+                    dialogue = "What symptoms do you have.";
+                    prompt = "medical_sick";
+                }
+                if (prompt.equals("medical_sick")){
+                    if (command.equals("dry cough, nasal congestion"){
+                        dialogue = "You have influenza commonly known as the flu. Treatment rest drink alot of fluids and take aspirin";
+                        prompt = "";
+                        editor.putString("sick", "flu");
+                        editor.apply();
+                    }
+                    if (command.equals("throat irritation, ear pain"){
+                       dialogue  = "You have  streptococcal pharyngitis commonly known as strep throat. Treatment go to the doctor and recieve an antibiotic penicillin, amoxicillin, cephalexin, or azithromycin are commonly used antibiotics. "
+                       prompt = "";
+                       editor.putString("sick", "strep");
+                       editor.apply();
+                    }
+                }
+                if  (prompt.equals("medical_hurt") {
+                    if (command.equals("scrape"){
+                        dialogue = "Clean the scrape and apply a bandaid to the scrape";
+                        prompt = "";
+                        editor.putString("hurt", "scrape");
+                        editor.apply();
+                    }
+                }
+                
                 if (prompt.equals("")) {
                     if (command.equals("how old are you")) {
                         dialogue = "I was designed in 2015";
