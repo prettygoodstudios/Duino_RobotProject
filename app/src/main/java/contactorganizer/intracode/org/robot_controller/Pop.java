@@ -24,8 +24,9 @@ import android.widget.AdapterView.OnItemClickListener;
  * Created by macmini on 1/8/16.
  */
 
-public class Pop extends Activity  {
-
+public class Pop extends Activity implements LoaderManager.LoaderCallbacks<Cursor>  {
+SimpleCursorAdapter mAdapter;
+static final String robotsavailble = new String[] {"Robot1","Robot2","Robot3","Robot4"};
 
 ArrayAdapter<String> listAdapter;
     ListView listview;
@@ -41,6 +42,12 @@ Set<BluetoothDevice> devicesArray;
         setContentView(R.layout.popwindow);
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
+       SimpleCursorAdapter mAdapter;
+       int[] toViews = {android.R.id.text1};
+        mAdapter = new SimpleCursorAdapter(this, 
+                android.R.layout.simple_list_item_1, null,
+                robotsavailable, toViews, 0);
+        setListAdapter(mAdapter);
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
