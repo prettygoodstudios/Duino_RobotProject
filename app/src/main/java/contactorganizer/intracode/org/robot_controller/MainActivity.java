@@ -136,6 +136,13 @@ String name;
     String dialogue;
     String prompt;
     String jokes[] ={"My friend thinks he is smart. He told me an onion is the only food that makes you cry, so I threw a coconut at his face.","What happens to a frog's car when it breaks down? It gets toad away.","Why did Johnny throw the clock out of the window? Because he wanted to see time fly!", "Why shouldn't you write with a broken pencil?  Because it's pointless.","Why did the computer go to the doctor? Because it had a virus!"};
+    String fortunes[] = {"Change can hurt, but it leads a path to something better.", "You learn from your mistakes... You will learn a lot today.", "If you have something good in your life, don't let it go!","Serious trouble will bypass you.", "A very attractive person has a message for you."};
+    String sports[] = {"football","basketball","baseball","soccer",""
+    String hello[] = {"Hola", "Haai", "nômoshkar", "nǐ hǎo", "Bonjour", "Ciao" };
+    String hello_language[] = {"Spanish", "Afrikaans", "Bengali", "Mandarin Chinese", "French", "Italian"};
+    String food[] = {"hamburger", "pizza", "pasta", "orange chicken", "tacos", "sandwich"};
+    String presidential_canidates = {"Hillary Clinton", "Bernie Sanders", "Marco Rubio", "Donald Trump", "Jeb Bush", "Chris Christie", "Ted Cruz", "Ben Carson"};
+    String presidential_canidates_quotes = {"Dont talk about the emails.", "For many, the American dream has become a nightmare.", "When was the last time you heard news accounts of a boatload of American refugees arrive on the shores of another country?", "I have a great relationship with the Mexican people.", "I don't think a party can aspire to be the majority party if it's the old white guy party", "Mom spent the time that she was supposed to be a kid actully raising children, her younger brother and younger sister. She was tough as nails and did not suffer fools at all. And the truth was she could not afford to. She spoke the truth, bluntly, directly, and without much varnish. I am her son.", "When my father came over here penniless with $100 sewn into his underwear, thank God some well-meaning liberal didn't come put his arm around him and say, 'Let me take care of you.'", "I was asked by an NPR reporter once why don't I talk about race that often. I said, 'It's because I'm a neurosurgeon.' And she thought that was a strange response... I said, 'You see, when I take someone to the operating room, I'm actually operating on the thing that makes them who they are. The skin doesn't make them who they are.'"};
     public void saveInfo(){
 
         String[] words = command.split(" ");
@@ -266,6 +273,12 @@ String name;
                 if (command.equals("no") && prompt.equals("assistance2")){
                     prompt = "";
                     dialogue = "If you need anything let me know.";
+                }
+                if (command.equals("who do you think is going to win the general election")){
+                    
+                    Random presidentialCanidate = new random();
+                    presidentialCanidate = rand.nextInt(7);
+                    dialogue = "I predict that " + presidential_canidates[presidentialCanidate] + " will win the election. I'm now going to share with you a qoute from" + presdiential_canidates[presidentialCanidate] + " " + presidential_canidates_quotes[presidentialCanidate];
                 }
                 if (command.equals("Can you cheer me up") && prompt.equals("assistance2")){
                     prompt = "";
