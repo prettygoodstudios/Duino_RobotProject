@@ -137,7 +137,7 @@ String name;
     String prompt;
     String jokes[] ={"My friend thinks he is smart. He told me an onion is the only food that makes you cry, so I threw a coconut at his face.","What happens to a frog's car when it breaks down? It gets toad away.","Why did Johnny throw the clock out of the window? Because he wanted to see time fly!", "Why shouldn't you write with a broken pencil?  Because it's pointless.","Why did the computer go to the doctor? Because it had a virus!"};
     String fortunes[] = {"Change can hurt, but it leads a path to something better.", "You learn from your mistakes... You will learn a lot today.", "If you have something good in your life, don't let it go!","Serious trouble will bypass you.", "A very attractive person has a message for you."};
-    String sports[] = {"football","basketball","baseball","soccer",""
+    String sports[] = {"football","basketball","baseball","soccer"};
     String hello[] = {"Hola", "Haai", "nômoshkar", "nǐ hǎo", "Bonjour", "Ciao" };
     String hello_language[] = {"Spanish", "Afrikaans", "Bengali", "Mandarin Chinese", "French", "Italian"};
     String food[] = {"hamburger", "pizza", "pasta", "orange chicken", "tacos", "sandwich"};
@@ -262,6 +262,18 @@ String name;
                     dialogue =" What is wrong sir.     Do you need any assistance";
                     prompt = "assistance2";
                 }
+                if (command.equals("Who do you think is going to win the election")){
+                    Random election_prediction = new Random();
+                    int random_prediction = election_prediction.nextInt(presidential_canidates.length());
+                    dialogue ="Using data I have gathered from across the Internet I predict that " + presidential_canidate[random_prediction] + " will win the eletion. I will now share with you a famous qoute from the canidate " + presidential_qoutes[random_prediction]; 
+                    prompt = "";
+                }
+                if (command.equals("I want to hear my fortune"){
+                    Random fortune_picker = new Random();
+                    int fortune_random = fortune_picker.nextInt(fortunes.length());
+                    dialogue = fortunes[fortune_random];
+                    prompt = "";
+                }
                 if (command.equals("no") && prompt.equals("assistance")){
                     prompt = "";
                     dialogue = "If you need anything let me know.";
@@ -273,12 +285,6 @@ String name;
                 if (command.equals("no") && prompt.equals("assistance2")){
                     prompt = "";
                     dialogue = "If you need anything let me know.";
-                }
-                if (command.equals("who do you think is going to win the general election")){
-                    
-                    Random presidentialCanidate = new random();
-                    presidentialCanidate = rand.nextInt(7);
-                    dialogue = "I predict that " + presidential_canidates[presidentialCanidate] + " will win the election. I'm now going to share with you a qoute from" + presdiential_canidates[presidentialCanidate] + " " + presidential_canidates_quotes[presidentialCanidate];
                 }
                 if (command.equals("Can you cheer me up") && prompt.equals("assistance2")){
                     prompt = "";
